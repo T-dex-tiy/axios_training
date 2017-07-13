@@ -7,8 +7,8 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      characters: 'All',
-      info: null
+      characters:{},
+      info:{}
     }
   }
   componentDidMount(){

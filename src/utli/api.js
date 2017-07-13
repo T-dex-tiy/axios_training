@@ -1,14 +1,21 @@
 import axios from 'axios';
 
-
-module.exports = {
-  fetchStarWars: (charaters => {
-    const encodedCharaters = window.encodedCharaters('http://localhost:3008');
-
-    return axios.get(encodedCharaters)
-    .then(response => {
-      return response;
-    }
-    )
-  })
+function getCharacters(characters){
+  return axios.get('http://localhost:3008/people');
 }
+
+
+const api = {
+  fetchStarWars: (characters) => {
+    return axios.all([getCharacters(characters)])
+    .then((arr) => {
+      return{
+        charaters: arr[0].data,
+      }
+    })
+  }
+}
+
+
+
+module.exports = api
